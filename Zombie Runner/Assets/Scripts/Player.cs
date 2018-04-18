@@ -10,7 +10,7 @@ public class Player : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		ReSpawn ();
+		//ReSpawn ();
 	}
 	
 	// Update is called once per frame
