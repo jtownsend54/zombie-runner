@@ -15,7 +15,6 @@ public class Eyes : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		Debug.Log (Input.GetAxis ("Zoom"));
 		if (Input.GetAxis ("Zoom") != 0f) {
 			camera.fieldOfView = playerFOV - (playerFOV * .5f);
 		} else {
