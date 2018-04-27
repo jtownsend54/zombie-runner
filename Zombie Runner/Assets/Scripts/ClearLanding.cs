@@ -7,6 +7,7 @@ public class ClearLanding : MonoBehaviour {
 	private AudioSource foundLanding;
 	private float checkTime;
 	private bool foundLandingPlayed = false;
+	private float callHeloDelay = 10;
 
 	// Use this for initialization
 	void Start () {
@@ -15,6 +16,11 @@ public class ClearLanding : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+		// Give the initial "where am I" sound some time to play before calling this.
+		if (Time.timeSinceLevelLoad < callHeloDelay) {
+			return;
+		}
+
 		if (Time.time - checkTime >= 1 && !foundLandingPlayed) {
 			foundLanding.Play ();
 			foundLandingPlayed = true;

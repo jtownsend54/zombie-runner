@@ -9,11 +9,21 @@ public class Player : FirstPersonController {
 	public bool doSpawn;
 
 	private SpawnPoint[] spawnPoints;
+	private AudioSource innerVoice;
 
 	// Use this for initialization
 	public override void Start () {
 		base.Start();
-		Debug.Log("Player Start");
+
+		foreach (AudioSource source in GetComponents<AudioSource>()) {
+			if (source.priority == 1) {
+				innerVoice = source;
+			} else {
+				base.m_AudioSource = source;
+			}
+		}
+
+		innerVoice.Play ();
 	}
 	
 	// Update is called once per frame
