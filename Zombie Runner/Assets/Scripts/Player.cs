@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityStandardAssets.Characters.FirstPerson;
 
-public class Player : MonoBehaviour {
+public class Player : FirstPersonController {
 	public GameObject spawnPointContainer;
 	public Helicopter helicopter;
 	public bool doSpawn;
@@ -10,12 +11,15 @@ public class Player : MonoBehaviour {
 	private SpawnPoint[] spawnPoints;
 
 	// Use this for initialization
-	void Start () {
-		//ReSpawn ();
+	public override void Start () {
+		base.Start();
+		Debug.Log("Player Start");
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	public override void Update () {
+		base.Update();
+
 		if (doSpawn) {
 			ReSpawn();
 		}
@@ -32,7 +36,6 @@ public class Player : MonoBehaviour {
 	}
 
 	void OnFindClearArea() {
-		Debug.Log ("In player script");
 		helicopter.doCallHelo ();
 	}
 }

@@ -43,7 +43,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private AudioSource m_AudioSource;
 
         // Use this for initialization
-        private void Start()
+        public virtual void Start()
         {
             m_CharacterController = GetComponent<CharacterController>();
             m_Camera = Camera.main;
@@ -55,11 +55,12 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_Jumping = false;
             m_AudioSource = GetComponent<AudioSource>();
 			m_MouseLook.Init(transform , m_Camera.transform);
+			Debug.Log("FirstPersonController Start");
         }
 
 
         // Update is called once per frame
-        private void Update()
+		public virtual void Update()
         {
             RotateView();
             // the jump state needs to read here to make sure it is not missed
