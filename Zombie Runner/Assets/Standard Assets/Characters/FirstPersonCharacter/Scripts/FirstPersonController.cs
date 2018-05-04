@@ -40,10 +40,10 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private float m_StepCycle;
         private float m_NextStep;
         private bool m_Jumping;
-		protected AudioSource m_AudioSource;
+		private AudioSource m_AudioSource;
 
         // Use this for initialization
-        public virtual void Start()
+        void Start()
         {
             m_CharacterController = GetComponent<CharacterController>();
             m_Camera = Camera.main;
@@ -59,7 +59,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
 
         // Update is called once per frame
-		public virtual void Update()
+		void Update()
         {
             RotateView();
             // the jump state needs to read here to make sure it is not missed

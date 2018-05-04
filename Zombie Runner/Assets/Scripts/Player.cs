@@ -3,40 +3,38 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.Characters.FirstPerson;
 
-public class Player : FirstPersonController {
+public class Player : MonoBehaviour {
 	public GameObject spawnPointContainer;
-	public Helicopter helicopter;
+//	public Helicopter helicopter;
 	public bool doSpawn;
 
 	private SpawnPoint[] spawnPoints;
-	private AudioSource innerVoice;
+	// private AudioSource innerVoice;
 
 	// Use this for initialization
-	public override void Start () {
-		base.Start();
-
-		foreach (AudioSource source in GetComponents<AudioSource>()) {
-			if (source.priority == 1) {
-				innerVoice = source;
-			} else {
-				base.m_AudioSource = source;
-			}
-		}
-
-		innerVoice.Play ();
-	}
+//	public override void Start () {
+//		base.Start();
+//
+//		foreach (AudioSource source in GetComponents<AudioSource>()) {
+//			if (source.priority == 1) {
+//				innerVoice = source;
+//			} else {
+//				base.m_AudioSource = source;
+//			}
+//		}
+//
+//		innerVoice.Play ();
+//	}
 	
 	// Update is called once per frame
-	public override void Update () {
-		base.Update();
-
-		if (doSpawn) {
-			ReSpawn();
-		}
-
-		doSpawn = false;
-	}
-
+//	public override void Update () {
+//		if (doSpawn) {
+//			ReSpawn();
+//		}
+//
+//		doSpawn = false;
+//	}
+//
 	void ReSpawn() {
 		spawnPoints = spawnPointContainer.GetComponentsInChildren<SpawnPoint> ();
 
@@ -45,7 +43,11 @@ public class Player : FirstPersonController {
 		GetComponent<Transform>().position = spawnPoints[randomIdx].GetComponent<Transform>().position;
 	}
 
-	void OnFindClearArea() {
-		helicopter.doCallHelo ();
+	void OnCallHelo() {
+		Debug.Log ("Laydown a flare");
 	}
+
+//	void OnFindClearArea() {
+//		helicopter.doCallHelo ();
+//	}
 }

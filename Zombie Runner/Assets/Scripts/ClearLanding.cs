@@ -3,16 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ClearLanding : MonoBehaviour {
-	
-	private AudioSource foundLanding;
 	private float checkTime;
-	private bool foundLandingPlayed = false;
+	private bool foundLanding = false;
 	private float callHeloDelay = 10;
-
-	// Use this for initialization
-	void Start () {
-		foundLanding = GetComponent<AudioSource> ();
-	}
 
 	// Update is called once per frame
 	void Update () {
@@ -21,18 +14,17 @@ public class ClearLanding : MonoBehaviour {
 			return;
 		}
 
-		if (Time.time - checkTime >= 1 && !foundLandingPlayed) {
-			foundLanding.Play ();
-			foundLandingPlayed = true;
-			Invoke ("triggerClearArea", 10);
+		if (Time.time - checkTime >= 1 && !foundLanding) {
+			SendMessageUpwards ("OnClearLandingFound");
+			foundLanding = true;
 		}
 	}
 
-	void triggerClearArea() {
-		SendMessageUpwards ("OnFindClearArea");
-	}
-
 	void OnTriggerStay(Collider tree) {
+		if (tree.tag == "Player") {
+			return;
+		}
+
 		checkTime = Time.time;
 	}
 }
