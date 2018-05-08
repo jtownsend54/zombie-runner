@@ -5,6 +5,7 @@ using UnityStandardAssets.Characters.FirstPerson;
 
 public class Player : MonoBehaviour {
 	public GameObject spawnPointContainer;
+	public LandingArea landingArea;
 //	public Helicopter helicopter;
 	public bool doSpawn;
 
@@ -43,11 +44,12 @@ public class Player : MonoBehaviour {
 		GetComponent<Transform>().position = spawnPoints[randomIdx].GetComponent<Transform>().position;
 	}
 
-	void OnCallHelo() {
-		Debug.Log ("Laydown a flare");
+	void OnClearLandingFound() {
+		Invoke ("CreateLandingArea", 3);
 	}
 
-//	void OnFindClearArea() {
-//		helicopter.doCallHelo ();
-//	}
+	void CreateLandingArea() {
+		LandingArea area = Instantiate (landingArea);
+		area.transform.position = transform.position;
+	}
 }
